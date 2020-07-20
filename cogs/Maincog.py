@@ -18,6 +18,7 @@ class Maincog(commands.Cog):
 
     @commands.command()
     async def help(self, ctx):
+        await ctx.message.delete()
         commandsList = {
             "status": "Retourne des info sur le serveur minecraft",
             "force_restart": "Kill le processus du serveur en cas de crash non resolvable depuis le apen admin ATTENTION : command a utliser en cas de probleme & réservé au administrateur ",
