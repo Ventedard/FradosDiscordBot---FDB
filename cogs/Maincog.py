@@ -7,9 +7,9 @@ class Maincog(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def say(self, ctx, client, *, message):
+    async def say(self, ctx, *, message):
         text = message
-        await ctx.send(f"le message est **{text}** {ctx.message.author.mention}")
+        await ctx.send(f"le message est **{text}** {ctx.message.author.name}")
 
     @commands.command()
     @commands.is_owner()
@@ -21,8 +21,9 @@ class Maincog(commands.Cog):
         await ctx.message.delete()
         commandsList = {
             "status": "Retourne des info sur le serveur minecraft",
-            "force_restart": "Kill le processus du serveur en cas de crash non resolvable depuis le apen admin ATTENTION : command a utliser en cas de probleme & réservé au administrateur ",
-            "send_command": "Permet d'envoyer des commandes au server INFO : commande non disponible & réservé au administrateur",
+            "force_restart": "Kill le processus du serveur en cas de crash non resolvable depuis le apen admin | ATTENTION : command a utliser en cas de probleme & réservé aux administrateurs ",
+            "send_command": "Permet d'envoyer des commandes au server via rcon | INFO : réservé aux administrateurs",
+            "send_message": "Permet d'envoyer des messages au chat du server votre pseudo discord sera automatiquement incrit dans le message",
         }
         embed = discord.Embed(description="Prefix : `frados/`", color=0x2B2B2B)
         embed.set_author(name="Liste des commandes Frados", icon_url="https://cdn.discordapp.com/attachments/713841107875659827/734751097377390592/server-icon.png")

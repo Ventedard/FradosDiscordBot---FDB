@@ -3,7 +3,7 @@ import psutil
 from mcipc.query import Client
 import socket
 import discord
-import asyncio
+import unicodedata
 
 
 class mcServer(commands.Cog):
@@ -109,8 +109,34 @@ class mcServer(commands.Cog):
             await ctx.send((f"""```fix\nErreur : psutil.NoSuchProces ({pid})```"""))
 
     @commands.command()
-    async def send_command():
-        pass
+    @commands.has_role(734795725027672116)
+    async def send_command(self, ctx, *, message):
+        await ctx.message.delete()
+        from mcipc.rcon import Client
+
+        try:
+            with Client("192.168.1.35", 25575) as client:
+                client.login("")
+
+                if message.startswith("/"):
+                    message.replace("/", "")
+                client.run(message)
+        except socket.timeout as timeout:
+            await ctx.send(timeout)
+
+    @commands.command()
+    async def send_message(self, ctx, *, message):
+        await ctx.message.delete()
+        from mcipc.rcon import Client
+
+        try:
+            with Client("192.168.1.35", 25575, timeout=1.5) as client:
+                client.login("")
+                msg = unicodedata.normalize("NFKD", message).encode("ASCII", "ignore").decode("utf-8")
+                author = unicodedata.normalize("NFKD", ctx.message.author.name).encode("ASCII", "ignore").decode("utf-8")
+                client.me(f"§9[Discord]§c[{author}]§f {str(msg)}")
+        except socket.timeout as timeout:
+            await ctx.send(timeout)
 
 
 def setup(client):
