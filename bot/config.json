@@ -1,0 +1,12 @@
+{
+  "config": {
+    "ip": "192.168.1.35",
+    "port": "25565",
+    "serverName": "Frados"
+  },
+  "discord": {
+    "botToken": "NzM0NzUwODY1Nzg0ODMyMTIw.XxWQfA.Sa5ZjQqcAeXWaZ1gEAUi92GA8y0",
+    "queryRole": "null",
+    "controleRole": "null"
+  }
+}
